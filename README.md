@@ -1,5 +1,16 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Live Preview
+https://ecom-react-demo.netlify.app
+
+## Usage
+#### Admin Login
+Username: admin
+password: password
+#### User Login
+username: regular
+password: password
+
 ## Available Scripts
 
 In the project directory, you can run:
