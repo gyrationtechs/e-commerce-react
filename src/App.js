@@ -5,6 +5,7 @@ import Context from "./Context";
 import Login from "./components/Login";
 import AddProduct from "./components/AddProduct";
 import Cart from "./components/Cart";
+import ProductList from "./components/ProductList";
 
 export default class App extends Component {
   constructor(props) {
@@ -16,30 +17,6 @@ export default class App extends Component {
     };
     this.routerRef = React.createRef();
   }
-
-  componentDidMount() {
-    let user = localStorage.getItem("user");
-    user = user ? JSON.parse(user) : null;
-    this.setState({ user });
-  }
-
-  componentDidMount() {
-    let user = localStorage.getItem("user");
-    let products = localStorage.getItem("products");
-
-    user = user ? JSON.parse(user) : null;
-    products = products ? JSON.parse(products) : data.initProducts;
-
-    this.setState({ user, products });
-  }
-
-  addProduct = (product, callback) => {
-    let products = this.state.products.slice();
-    products.push(product);
-    localStorage.setItem("products", JSON.stringify(products));
-    this.setState({ products }, () => callback && callback());
-  };
-
   componentDidMount() {
     let user = localStorage.getItem("user");
     let products = localStorage.getItem("products");
@@ -52,6 +29,13 @@ export default class App extends Component {
 
     this.setState({ user, products, cart });
   }
+
+  addProduct = (product, callback) => {
+    let products = this.state.products.slice();
+    products.push(product);
+    localStorage.setItem("products", JSON.stringify(products));
+    this.setState({ products }, () => callback && callback());
+  };
 
   addToCart = cartItem => {
     let cart = this.state.cart;
@@ -183,11 +167,11 @@ export default class App extends Component {
               </div>
             </nav>
             <Switch>
-            <Route exact path="/" component={Component} />
+            <Route exact path="/" component={ProductList} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/cart" component={Cart} />
               <Route exact path="/add-product" component={AddProduct} />
-              <Route exact path="/products" component={Component} />
+              <Route exact path="/products" component={ProductList} />
             </Switch>
           </div>
         </Router>
